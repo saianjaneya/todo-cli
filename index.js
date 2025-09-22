@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { ACTIONS } from "./actions.js";
+import { ACTIONS } from "./actions_pg.js";
 
 const args = process.argv.slice(2);
 
@@ -9,27 +9,27 @@ const action = args[0];
 switch (action) {
   case "list":
   case undefined: {
-    ACTIONS.list();
+    await ACTIONS.list();
     break;
   }
   case "add": {
-    ACTIONS.add(args[1]);
+    await ACTIONS.add(args[1]);
     break;
   }
   case "clear": {
-    ACTIONS.clear();
+    await ACTIONS.clear();
     break;
   }
   case "remove": {
-    ACTIONS.remove(args[1]);
+    await ACTIONS.remove(args[1]);
     break;
   }
   case "done": {
-    ACTIONS.done(args[1]);
+    await ACTIONS.done(args[1]);
     break;
   }
   case "undone": {
-    ACTIONS.undone(args[1]);
+    await ACTIONS.undone(args[1]);
     break;
   }
   case "edit": {
@@ -39,6 +39,8 @@ switch (action) {
     console.log(`Invalid cmd`);
   }
 }
+
+process.exit(0);
 /**
  todos add "text here..." - Add todo
 
